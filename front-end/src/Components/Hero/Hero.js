@@ -11,7 +11,9 @@ import "swiper/css/navigation";
 const Hero = () => {
     return (
 
-        <>
+        <div className='relative container'>
+         <div className="h-72 w-72 bg-violet-700 absolute left-0 top-10 blur-2xl rounded-full opacity-30 z-10"></div>
+         <div className=" bg-orange-700 h-60 w-72 absolute -right-10 -bottom-20 blur-3xl rounded-full opacity-30 z-10"></div>
             <Swiper
                 spaceBetween={30}
                 centeredSlides={true}
@@ -76,7 +78,7 @@ const Hero = () => {
                     <img src={banerImg1} alt="" className='w-full'/>
                  </div>
              </div> */}
-        </>
+        </div>
 
          
       
