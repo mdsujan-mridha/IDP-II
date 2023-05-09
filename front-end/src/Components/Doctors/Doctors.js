@@ -38,7 +38,9 @@ const Doctors = () => {
 
                     </div>
                     <div className="lg:justify-end lg:top-12 lg:absolute lg:right-3">
-                        <button className="btn btn-primary capitalize text-white font-semibold text-lg"> view profile </button>
+                       <Link
+                        to="/doctorDetails"
+                         className="btn btn-primary capitalize text-white font-semibold text-lg"> view profile </Link>
                     </div>
                 </div>
             </div>
@@ -54,7 +56,9 @@ const Doctors = () => {
 
                     </div>
                     <div className="lg:justify-end lg:top-12 lg:absolute lg:right-3">
-                        <button className="btn btn-primary capitalize text-white font-semibold text-lg"> view profile </button>
+                       <Link
+                        to="/doctorDetails"
+                         className="btn btn-primary capitalize text-white font-semibold text-lg"> view profile </Link>
                     </div>
                 </div>
             </div>
@@ -70,7 +74,9 @@ const Doctors = () => {
 
                     </div>
                     <div className="lg:justify-end lg:top-12 lg:absolute lg:right-3">
-                        <button className="btn btn-primary capitalize text-white font-semibold text-lg"> view profile </button>
+                       <Link
+                        to="/doctorDetails"
+                         className="btn btn-primary capitalize text-white font-semibold text-lg"> view profile </Link>
                     </div>
                 </div>
             </div>
@@ -86,7 +92,9 @@ const Doctors = () => {
 
                     </div>
                     <div className="lg:justify-end lg:top-12 lg:absolute lg:right-3">
-                        <button className="btn btn-primary capitalize text-white font-semibold text-lg"> view profile </button>
+                       <Link
+                        to="/doctorDetails"
+                         className="btn btn-primary capitalize text-white font-semibold text-lg"> view profile </Link>
                     </div>
                 </div>
             </div>

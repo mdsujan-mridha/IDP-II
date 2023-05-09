@@ -3,6 +3,7 @@ import chooseImg from "../Assets/Tools/Choose.png";
 import connectImg from "../Assets/Tools/Connect.png";
 import prepareImg from "../Assets/Tools/Prepare.png";
 
+
 const items = [
     {
         id: "1",
@@ -48,7 +49,6 @@ const ToolsBanner = () => {
 
                                 </div>
                             </div>
-
                         ))
                     }
                 </div>
