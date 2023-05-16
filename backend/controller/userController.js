@@ -2,6 +2,8 @@ const catchAsyncErrors = require("../midddleware/catchAsyncErrors");
 const sendToken = require("../utils/jwtToken");
 const ErrorHandler = require("../utils/ErrorHandler");
 const User = require("../models/userModel");
+const sendEmail = require("../utils/sendEmail");
+
 // register new user 
 exports.registerUser = catchAsyncErrors(async (req, res, next) => {
     //  this property will get from client site 
@@ -92,3 +94,4 @@ exports.forgotPassword = catchAsyncErrors(async(req,res,next) =>{
     }
 
 });
+

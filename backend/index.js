@@ -1,5 +1,8 @@
 const app = require("./app");
 const dotenv = require('dotenv');
+const database = require("./config/dbConnection");
+
+const port = process.env.PORT || 5000;
 
 // handle uncaught type error 
 process.on("uncaughtException",err =>{
@@ -10,6 +13,9 @@ process.on("uncaughtException",err =>{
 
 // config dot env 
 dotenv.config({path:"./config/.env" });
+
+// database connection 
+database();
 
 // listen server and set a message it's working or not
 
