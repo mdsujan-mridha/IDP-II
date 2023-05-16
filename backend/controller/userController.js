@@ -45,7 +45,7 @@ exports.loginUser = catchAsyncErrors(async(req,res,next) =>{
 
 // logout function 
 
-exports.ogOut = catchAsyncErrors(async(req,res,next) =>{
+exports.logout = catchAsyncErrors(async(req,res,next) =>{
      res.cookie("token",null,{
         expires:new Date(Date.now()),
         httpOnly:true,
@@ -56,5 +56,39 @@ exports.ogOut = catchAsyncErrors(async(req,res,next) =>{
      });
 });
 
+// forgot password 
+exports.forgotPassword = catchAsyncErrors(async(req,res,next) =>{
+    // first i need gmail for identify Which user make request for forgot password   
+    const user = await User.findOne({email:req.body.email});
+    if(!user){
+        return next(new ErrorHandler("user not found",404));
 
+    };
+    //    need new token for reset password 
+    const resetToken = user.getResetPasswordToken();
 
+    await user.save({validateBeforeSave:false });
+   //  send link to user,and user click this link for change her password 
+    const resetPasswordUrl = `${req.protocol}://${req.get("host")}/password/reset/${resetToken}`;
+     
+    const message = `Your password reset token is :- \n\n ${resetPasswordUrl} \n\nIf you have not requested this email then, please ignore it.`;
+   //  now send this message to user using nodemailer 
+    try{
+        await sendEmail({
+         email:user.email,
+         subject:`Health care password Recovery`,
+         message,
+        });
+        res.status(200).json({
+          success:true,
+          message:`Email send to ${user.email} successfully`,
+        });
+
+    }catch(error){
+      user.resetPasswordToken = undefined;
+      user.resetPasswordExpire = undefined;
+      await user.save({validateBeforeSave:false });
+      return next(new ErrorHandler(error.message,500));
+    }
+
+});
