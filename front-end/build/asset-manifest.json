@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "/static/css/main.f5408209.css",
+    "main.js": "/static/js/main.9185603f.js",
+    "static/media/Doctor-1.png": "/static/media/Doctor-1.5429547e0e0c83ec14cd.png",
+    "static/media/Prepare.png": "/static/media/Prepare.74d0889e3fa5a0aec792.png",
+    "static/media/Choose.png": "/static/media/Choose.d067543fa9163d2f952e.png",
+    "static/media/Doctor-3.png": "/static/media/Doctor-3.e4ad2aad9d2ea06e2ddc.png",
+    "static/media/Doctor-2.png": "/static/media/Doctor-2.732cf9aabc057691324c.png",
+    "static/media/Doctor-5.png": "/static/media/Doctor-5.ac1d4b85811dcaa495b2.png",
+    "static/media/Doctor-4.png": "/static/media/Doctor-4.ba90ce38dd3c7d493065.png",
+    "static/media/orthopedic.png": "/static/media/orthopedic.4a364f339ba739a42ef6.png",
+    "static/media/Connect.png": "/static/media/Connect.f50f854da8e5b372a282.png",
+    "static/media/health.png": "/static/media/health.8c12ec858b41f963938b.png",
+    "static/media/mentalHelth.png": "/static/media/mentalHelth.7a891f8bae3c3783d454.png",
+    "static/media/video.png": "/static/media/video.754992ba9e175d864171.png",
+    "static/media/medicine.svg": "/static/media/medicine.a7df3c1f45c622a0873f94e6b45a9954.svg",
+    "static/media/undraw_doctor.svg": "/static/media/undraw_doctor.ae9d417724eed5e9bc95c3e80182ddef.svg",
+    "static/media/covid.svg": "/static/media/covid.7e7016d50ab321a0df1ed8d6318e59ff.svg",
+    "static/media/appointment.svg": "/static/media/appointment.ec2f6454eec9c41d28d48d3e06663a36.svg",
+    "static/media/undraw.svg": "/static/media/undraw.f48eea852f00abe152a87db3d7d1c8b3.svg",
+    "index.html": "/index.html",
+    "main.f5408209.css.map": "/static/css/main.f5408209.css.map",
+    "main.9185603f.js.map": "/static/js/main.9185603f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f5408209.css",
+    "static/js/main.9185603f.js"
+  ]
+}

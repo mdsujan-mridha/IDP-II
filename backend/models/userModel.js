@@ -1,8 +1,6 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
-
-
-
+const bcrypt = require("bcryptjs");
 // create a user schema 
 const userSchema = new mongoose.Schema({
     name: {
@@ -43,7 +41,22 @@ const userSchema = new mongoose.Schema({
     resetPasswordToken:String,
     resetPasswordExpire:Date,
 
+});
+
+  
+// save hash password on backend 
+userSchema.pre("save",async function(next){
+    if(!this.isModified("password")){
+        next();
+    }
+   this.password = await bcrypt.hash(this.password,10); 
 })
+
+//compare password
+
+userSchema.methods.comparePassword = async function(enterPassword){
+    return await bcrypt.compare(enterPassword,this.password);
+}
 
 
 module.exports = mongoose.model("User",userSchema);
