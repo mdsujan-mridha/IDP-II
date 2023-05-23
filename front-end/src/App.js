@@ -6,6 +6,7 @@ import './App.css';
 import Doctors from './Components/Doctors/Doctors';
 import Home from './Components/Home/Home';
 import SingleDoctor from './Components/SingleDoctor/SingleDoctor';
+import LoginSignUp from './Components/User/LoginSignUp';
 import Footer from './Share/Footer/Footer';
 import Navbar from './Share/Navbar/Navbar';
 // import store from './store';
@@ -33,6 +34,7 @@ function App() {
         <Route path='home' element={<Home />}></Route>
         <Route path='doctors' element={<Doctors/>}></Route>
         <Route path='doctorDetails' element={<SingleDoctor/>}></Route>
+        <Route path='login' element={<LoginSignUp/>}></Route>
       </Routes>
       <Footer/>
     </>
