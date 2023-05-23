@@ -1,6 +1,7 @@
 
 import { useEffect } from 'react';
 import { Route,  Routes } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import WebFont from 'webfontloader';
 import './App.css';
 import Doctors from './Components/Doctors/Doctors';
@@ -29,6 +30,7 @@ function App() {
   return (
     <>
       <Navbar />
+      <ToastContainer/>
       <Routes>
         <Route path='/' element={<Home />}></Route>
         <Route path='home' element={<Home />}></Route>

@@ -3,7 +3,7 @@
 // login user 
 
 import axios from "axios";
-import { LOGIN_FAIL, LOGIN_REQUEST, LOGIN_SUCCESS, REGISTER_USER_FAIL, REGISTER_USER_REQUEST, REGISTER_USER_SUCCESS } from "../constant/userConstant"
+import { CLEAR_ERRORS, LOGIN_FAIL, LOGIN_REQUEST, LOGIN_SUCCESS, REGISTER_USER_FAIL, REGISTER_USER_REQUEST, REGISTER_USER_SUCCESS } from "../constant/userConstant"
 
 
 export const login =(email,password)=>async(dispatch)=>{
@@ -33,4 +33,10 @@ export const register = (userData)=>async(dispatch)=>{
         dispatch({type:REGISTER_USER_FAIL,payload:error.response.data.message})
     }
 
+}
+
+
+// clear error 
+export const clearError = () =>async(dispatch)=>{
+     dispatch({type:CLEAR_ERRORS});
 }

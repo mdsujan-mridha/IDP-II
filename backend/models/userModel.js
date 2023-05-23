@@ -70,7 +70,7 @@ userSchema.methods.getJWTToken = function (){
 // get reset password token 
 userSchema.methods.getResetPasswordToken = function(){
     // create token 
-    const resetToken = crypto.randomBytes(20).toString("hex"); 
+    const resetToken = crypto.randomBytes(200).toString("hex"); 
    //  hashing and adding resetPasswordToken to user schema 
    this.resetPasswordToken = crypto
    .createHash("sha256")

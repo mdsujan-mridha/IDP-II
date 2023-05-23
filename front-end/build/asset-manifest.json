@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.f5408209.css",
-    "main.js": "/static/js/main.9185603f.js",
+    "main.css": "/static/css/main.58ce8ba4.css",
+    "main.js": "/static/js/main.84c1ab7d.js",
     "static/media/Doctor-1.png": "/static/media/Doctor-1.5429547e0e0c83ec14cd.png",
     "static/media/Prepare.png": "/static/media/Prepare.74d0889e3fa5a0aec792.png",
     "static/media/Choose.png": "/static/media/Choose.d067543fa9163d2f952e.png",
@@ -19,12 +19,13 @@
     "static/media/covid.svg": "/static/media/covid.7e7016d50ab321a0df1ed8d6318e59ff.svg",
     "static/media/appointment.svg": "/static/media/appointment.ec2f6454eec9c41d28d48d3e06663a36.svg",
     "static/media/undraw.svg": "/static/media/undraw.f48eea852f00abe152a87db3d7d1c8b3.svg",
+    "static/media/profile.svg": "/static/media/profile.fa7845edcd17a14cddabc30bcc7c6b26.svg",
     "index.html": "/index.html",
-    "main.f5408209.css.map": "/static/css/main.f5408209.css.map",
-    "main.9185603f.js.map": "/static/js/main.9185603f.js.map"
+    "main.58ce8ba4.css.map": "/static/css/main.58ce8ba4.css.map",
+    "main.84c1ab7d.js.map": "/static/js/main.84c1ab7d.js.map"
   },
   "entrypoints": [
-    "static/css/main.f5408209.css",
-    "static/js/main.9185603f.js"
+    "static/css/main.58ce8ba4.css",
+    "static/js/main.84c1ab7d.js"
   ]
 }
