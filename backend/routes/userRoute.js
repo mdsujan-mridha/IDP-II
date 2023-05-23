@@ -10,3 +10,6 @@ router.route("/login").post(loginUser);
 
 // forgot password 
 router.route("/password/forgot").post(forgotPassword);
+
+
+module.exports = router;
