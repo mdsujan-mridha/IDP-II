@@ -60,4 +60,5 @@ exports.deleteDoctor = catchAsyncErrors(async(req,res,next) =>{
         message:"Doctor deleted",
     })
 
-}) 
+});
+ 

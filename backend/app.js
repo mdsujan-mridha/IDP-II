@@ -13,8 +13,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // api version with route 
 const user = require("./routes/userRoute");
+const doctor = require("./routes/doctorRoute");
+
 
 app.use("/api/v1",user);
+app.use("/api/v1",doctor);
 
 // middleware for catch error 
 app.use(errorMiddleWare);
