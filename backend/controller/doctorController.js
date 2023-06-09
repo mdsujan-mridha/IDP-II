@@ -1,5 +1,6 @@
 const catchAsyncErrors = require("../midddleware/catchAsyncErrors");
 const Doctor = require("../models/doctorModel");
+const ErrorHandler = require("../utils/ErrorHandler");
 const ApiFeatures = require("../utils/apiFeatures");
 // create doctor 
 exports.createDoctor = catchAsyncErrors(async (req, res, next) => {
@@ -35,3 +36,28 @@ exports.getAllDoctors = catchAsyncErrors(async(req,res,next) =>{
 });
 
 // get doctor details 
+
+exports.getAllDoctorDetails = catchAsyncErrors(async(req,res,next) =>{
+    const doctor = await Doctor.findById(req.params.id);
+    if(!doctor){
+        return next(new ErrorHandler("Doctor not found",400))
+    }
+    res.status(200).json({
+        success:true, 
+        doctor,
+    })
+});
+
+// delete doctor 
+exports.deleteDoctor = catchAsyncErrors(async(req,res,next) =>{
+    const doctor = await Doctor.findById(req.params.id);
+    if(!doctor){
+         return next(new ErrorHandler("Doctor not found",400))
+    }
+    await doctor.remove();
+    res.status(200).json({
+        success:true,
+        message:"Doctor deleted",
+    })
+
+}) 
