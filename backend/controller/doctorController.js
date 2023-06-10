@@ -2,6 +2,7 @@ const catchAsyncErrors = require("../midddleware/catchAsyncErrors");
 const Doctor = require("../models/doctorModel");
 const ErrorHandler = require("../utils/ErrorHandler");
 const ApiFeatures = require("../utils/apiFeatures");
+const Appointment = require("../models/appointmentModel");
 // create doctor 
 exports.createDoctor = catchAsyncErrors(async (req, res, next) => {
 
@@ -61,4 +62,108 @@ exports.deleteDoctor = catchAsyncErrors(async(req,res,next) =>{
     })
 
 });
+
+// doctor appointment 
+exports.doctorAppointment = catchAsyncErrors(async(req,res,next) =>{
+     try{
+         
+        const doctor = await Doctor.findOne({userId:req.body.userId});
+        const appointments = await Appointment.find({
+              doctorId:doctor._id,
+        });
+        res.status(200).send({
+            success:true,
+            message:"Doctor Appointment fetch successfully",
+            data:appointments,
+        });
+
+     } catch(error){
+        console.log(error);
+        res.status(500).send({
+            success:false,
+            error,
+            message:"Error in doctor Appointments"
+        })
+
+     }
+})
+
+// update status 
+exports.updateStatusController = async (req, res) => {
+    try {
+      const { appointmentsId, status } = req.body;
+      const appointments = await Appointment.findByIdAndUpdate(
+        appointmentsId,
+        { status }
+      );
+      const user = await userModel.findOne({ _id: appointments.userId });
+      const notification = user.notification;
+      notification.push({
+        type: "status-updated",
+        message: `your appointment has been updated ${status}`,
+        onCLickPath: "/doctor-appointments",
+      });
+      await user.save();
+      res.status(200).send({
+        success: true,
+        message: "Appointment Status Updated",
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(500).send({
+        success: false,
+        error,
+        message: "Error In Update Status",
+      });
+    }
+  };
+
+//   appointment booking 
+exports.appointmentBooking = async (req, res) => {
+    try {
+      req.body.date = moment(req.body.date, "DD-MM-YYYY").toISOString();
+      req.body.time = moment(req.body.time, "HH:mm").toISOString();
+      req.body.status = "pending";
+      const newAppointment = new Appointment(req.body);
+      await newAppointment.save();
+      const user = await userModel.findOne({ _id: req.body.doctorInfo.userId });
+      user.notifcation.push({
+        type: "New-appointment-request",
+        message: `A nEw Appointment Request from ${req.body.userInfo.name}`,
+        onCLickPath: "/user/appointments",
+      });
+      await user.save();
+      res.status(200).send({
+        success: true,
+        message: "Appointment Book succesfully",
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(500).send({
+        success: false,
+        error,
+        message: "Error While Booking Appointment",
+      });
+    }
+  };
  
+//   user appointment 
+exports.userAppointment = async (req, res) => {
+    try {
+      const appointments = await Appointment.find({
+        userId: req.body.userId,
+      });
+      res.status(200).send({
+        success: true,
+        message: "Users Appointments Fetch SUccessfully",
+        data: appointments,
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(500).send({
+        success: false,
+        error,
+        message: "Error In User Appointments",
+      });
+    }
+  };

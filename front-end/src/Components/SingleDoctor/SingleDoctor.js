@@ -1,6 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import doctorImg from "../Assets/Doctor-1.png";
+import  format  from 'date-fns/format';
+import { DayPicker } from 'react-day-picker';
 const SingleDoctor = () => {
+    const [selected, setSelected] = useState();
+
+    let footer = <p>Please pick a day.</p>;
+    if (selected) {
+        footer = <p>You picked {format(selected, 'PP')}.</p>;
+    }
     return (
         <div className='container pt-10 pb-10'>
             <div className=" wi-96 h-auto py-5,px-12 bg-secondary ">
@@ -18,49 +26,37 @@ const SingleDoctor = () => {
                         <p className='pt-10 text-2xl'> Description </p>
                         <p className='text-justify pt-2 text-sm'> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aspernatur tempore ab temporibus aut dolores quaerat quo vitae minus asperiores id, a sit rem qui culpa eligendi nemo sapiente mollitia quod! </p>
                         <p className='pt-10 text-2xl'> Appointment schedule </p>
-                        <div className="overflow-x-auto pt-5">
-                            <table className="table w-full bg-secondary">
-                                {/* head */}
-                                <thead>
-                                    <tr>
-                                        <th></th>
-                                        <th>Name</th>
-                                        <th>Job</th>
-                                        <th>Favorite Color</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {/* row 1 */}
-                                    <tr>
-                                        <th>1</th>
-                                        <td>Cy Ganderton</td>
-                                        <td>Quality Control Specialist</td>
-                                        <td>Blue</td>
-                                    </tr>
-                                    {/* row 2 */}
-                                    <tr>
-                                        <th>2</th>
-                                        <td>Hart Hagerty</td>
-                                        <td>Desktop Support Technician</td>
-                                        <td>Purple</td>
-                                    </tr>
-                                    {/* row 3 */}
-                                    <tr>
-                                        <th>3</th>
-                                        <td>Brice Swyre</td>
-                                        <td>Tax Accountant</td>
-                                        <td>Red</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                        <div className='flex justify-around gap-5'>
+                            <div className='bg-primary px-12 py-10'>
+                                <DayPicker
+                                    mode="single"
+                                    selected={selected}
+                                    onSelect={setSelected}
+                                    footer={footer}
+                                >
 
+                                </DayPicker>
+                            </div>
+                            <div className="dropdown dropdown-bottom">
+                                <label tabIndex={0} className="btn m-1"> Schedule </label>
+                                <ul tabIndex={0} className="">
+                                    <li><> 90:30  - 10:30 </></li>
+                                    <li><> 10:30 - 11:00 </></li>
+                                    <li><> 11:00 - 11:30 </></li>
+                                    <li><> 11:30 - 12:00 </></li>
+                                    <li><> 12:00 - 12:30 </></li>
+                                    <li><> 2:00 - 2:30 </></li>
+                                    <li><> 2:30 - 3:00 </></li>
+
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div className='px-12 py-12 text-center'>
                     <p className='text-2xl text-center uppercase'> contact information </p>
-                     <p> +8801857465656756 </p>
-                     <p> doctorX@gmail.com </p>
+                    <p> +8801857465656756 </p>
+                    <p> doctorX@gmail.com </p>
                 </div>
 
             </div>
