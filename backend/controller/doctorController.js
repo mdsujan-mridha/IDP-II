@@ -3,10 +3,11 @@ const Doctor = require("../models/doctorModel");
 const ErrorHandler = require("../utils/ErrorHandler");
 const ApiFeatures = require("../utils/apiFeatures");
 const Appointment = require("../models/appointmentModel");
+const moment = require("moment");
+const User = require("../models/userModel");
 // create doctor 
 exports.createDoctor = catchAsyncErrors(async (req, res, next) => {
-
-    req.body.user = req.user.id
+    // req.body.user = req.user.id
     const doctor = await Doctor.create(req.body);
     res.status(201).json({
         success: true,
@@ -96,13 +97,13 @@ exports.updateStatusController = async (req, res) => {
         appointmentsId,
         { status }
       );
-      const user = await userModel.findOne({ _id: appointments.userId });
-      const notification = user.notification;
-      notification.push({
-        type: "status-updated",
-        message: `your appointment has been updated ${status}`,
-        onCLickPath: "/doctor-appointments",
-      });
+      const user = await User.findOne({ _id: appointments.userId });
+      // const notification = user.notification;
+      // notification.push({
+      //   type: "status-updated",
+      //   message: `your appointment has been updated ${status}`,
+      //   onCLickPath: "/doctor-appointments",
+      // });
       await user.save();
       res.status(200).send({
         success: true,
@@ -117,25 +118,33 @@ exports.updateStatusController = async (req, res) => {
       });
     }
   };
+//   exports.createDoctor = catchAsyncErrors(async (req, res, next) => {
+//     // req.body.user = req.user.id
+//     const doctor = await Doctor.create(req.body);
+//     res.status(201).json({
+//         success: true,
+//         doctor,
 
+//     });
+// });
 //   appointment booking 
 exports.appointmentBooking = async (req, res) => {
     try {
       req.body.date = moment(req.body.date, "DD-MM-YYYY").toISOString();
       req.body.time = moment(req.body.time, "HH:mm").toISOString();
       req.body.status = "pending";
-      const newAppointment = new Appointment(req.body);
-      await newAppointment.save();
-      const user = await userModel.findOne({ _id: req.body.doctorInfo.userId });
-      user.notifcation.push({
-        type: "New-appointment-request",
-        message: `A nEw Appointment Request from ${req.body.userInfo.name}`,
-        onCLickPath: "/user/appointments",
-      });
-      await user.save();
+      const newAppointment = await Appointment.create(req.body);
+   
+      // user.notifcation.push({
+      //   type: "New-appointment-request",
+      //   message: `A nEw Appointment Request from ${req.body.userInfo.name}`,
+      //   onCLickPath: "/user/appointments",
+      // });
+ 
       res.status(200).send({
         success: true,
-        message: "Appointment Book succesfully",
+        newAppointment,
+        message: "Appointment Book successfully",
       });
     } catch (error) {
       console.log(error);

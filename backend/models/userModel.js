@@ -34,11 +34,11 @@ const userSchema = new mongoose.Schema({
         url: {
             type: String,
             required: true,
-        },
-        role:{
-            type:String,
-            default:"user",
-        },
+        }
+    },
+    role:{
+        type:String,
+        default:"user",
     },
     resetPasswordToken:String,
     resetPasswordExpire:Date,

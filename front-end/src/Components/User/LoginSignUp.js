@@ -4,66 +4,72 @@ import { useRef } from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import { clearError, login } from '../../actions/userAction';
 
+import { clearError, login, register } from '../../actions/userAction';
 import profileImage from "../Assets/profile/profile.svg";
-import {MdTagFaces} from "react-icons/md";
-import {AiOutlineMail} from "react-icons/ai";
-import {AiFillUnlock} from "react-icons/ai";
+import { MdTagFaces } from "react-icons/md";
+import { AiOutlineMail } from "react-icons/ai";
+import { AiFillUnlock } from "react-icons/ai";
 import Loader from "../../Share/Loader";
 
 import "./LoginSignUp.css";
 
+
 const LoginSignUp = () => {
 
     const dispatch = useDispatch();
-    // const { error, loading, isAuthenticated } = useSelector((state) => state?.user);
+
     const { error, loading, isAuthenticated } = useSelector((state) => state.user);
-    // all state 
+
+    //    all sate management 
+
     const [loginEmail, setLoginEmail] = useState("");
     const [loginPassword, setLoginPassword] = useState("");
-    const [avatar, setAvatar] = useState(profileImage);
-    const [avatarPreview, setAvatarPreview] = useState(profileImage);
     const [user, setUser] = useState({
         name: "",
         email: "",
         password: ""
     });
-
     const { name, email, password } = user;
+    const [avatar, setAvatar] = useState(profileImage);
+    const [avatarPreview, setAvatarPreview] = useState(profileImage);
 
-    // tab 
+    //tab
     const loginTab = useRef(null);
     const registerTab = useRef(null);
     const switcherTab = useRef(null);
-
     // navigate 
     const navigate = useNavigate();
-    //  navigate : navigate user to from page or profile page 
     let location = useLocation();
-    // location:track user location 
+    //   login 
 
-    // login function 
     const loginSubmit = (e) => {
         e.preventDefault();
         dispatch(login(loginEmail, loginPassword));
     }
 
-    // register function 
+    // register 
+
     const registerSubmit = (e) => {
         e.preventDefault();
         const myForm = new FormData();
+
         myForm.set("name", name);
         myForm.set("email", email);
         myForm.set("password", password);
         myForm.set("avatar", avatar);
-    }
+        dispatch(register(myForm));
+        console.log(name,email,password);
 
-    // read register filed data
+
+
+    };
+    // register data change
+
     const registerDataChange = (e) => {
         if (e.target.name === "avatar") {
             const reader = new FileReader();
+
             reader.onload = () => {
                 if (reader.readyState === 2) {
                     setAvatarPreview(reader.result);
@@ -74,42 +80,41 @@ const LoginSignUp = () => {
         } else {
             setUser({ ...user, [e.target.name]: e.target.value });
         }
-    }
 
-    // redirect user,if anyone try to access somethings without login then redirect user to login page & anyone come from any location then after login/register redirect user to location page
-    const redirect = location.search ? location.search.split("_")[1] : "/account";
+    };
 
+    //  redirect user 
+    const redirect = location.search ? location.search.split("=")[1] : "/account";
+    //  useEffect 
     useEffect(() => {
-
         if (error) {
-            toast.error(error)
+            // console.log(error);
+            // toast.error(error);
             dispatch(clearError());
         }
         if (isAuthenticated) {
-            toast.success("You are logged in")
-            navigate(redirect);
+            // toast.success("Your Logged in")
+            // navigate(redirect)
         }
+    }, [dispatch, error, navigate, isAuthenticated, redirect]);
 
-
-    }, [dispatch, error, navigate, isAuthenticated, redirect])
-
-    //    tab switch 
     const switchTabs = (e, tab) => {
         if (tab === "login") {
             switcherTab.current.classList.add("shiftToNeutral");
             switcherTab.current.classList.remove("shiftToRight");
-            switcherTab.current.classList.remove("shiftToNeutralForm");
-            switcherTab.current.classList.remove("shiftToLeft");
+
+            registerTab.current.classList.remove("shiftToNeutralForm");
+            loginTab.current.classList.remove("shiftToLeft");
+
         }
+
         if (tab === "register") {
             switcherTab.current.classList.add("shiftToRight");
             switcherTab.current.classList.remove("shiftToNeutral");
             registerTab.current.classList.add("shiftToNeutralForm");
             loginTab.current.classList.add("shiftToLeft");
         }
-
     }
-
     return (
         <Fragment>
             {

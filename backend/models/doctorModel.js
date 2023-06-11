@@ -3,10 +3,10 @@ const mongoose = require("mongoose");
 const doctorSchema = new mongoose.Schema({
     // write doctor schema 
 
-    userId: {
-        type: String,
-        require: true,
-    },
+    // userId: {
+    //     type: String,
+    //     require: true,
+    // },
     firstName: {
         type: String,
         require: true,
@@ -23,21 +23,18 @@ const doctorSchema = new mongoose.Schema({
         type: String,
         require: true,
     },
-    avatar: {
-        public_id: {
-            type: String,
-            required: true,
+    // avatar: {
+    //     public_id: {
+    //         type: String,
+    //         required: true,
 
-        },
-        url: {
-            type: String,
-            required: true,
-        },
-        role:{
-            type:String,
-            default:"user",
-        },
-    },
+    //     },
+    //     url: {
+    //         type: String,
+    //         required: true,
+    //     },
+       
+    // },
     address: {
         type: String,
         require: true,
