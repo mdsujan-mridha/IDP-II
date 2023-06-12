@@ -13,6 +13,7 @@ import { AiFillUnlock } from "react-icons/ai";
 import Loader from "../../Share/Loader";
 
 import "./LoginSignUp.css";
+import { Alert } from 'antd';
 
 
 const LoginSignUp = () => {
@@ -94,6 +95,7 @@ const LoginSignUp = () => {
         }
         if (isAuthenticated) {
             // toast.success("Your Logged in")
+            <Alert message="Logged in" type="success" />
             // navigate(redirect)
         }
     }, [dispatch, error, navigate, isAuthenticated, redirect]);

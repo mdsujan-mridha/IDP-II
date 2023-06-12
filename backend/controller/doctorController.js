@@ -18,23 +18,28 @@ exports.createDoctor = catchAsyncErrors(async (req, res, next) => {
 
 // get all doctor 
 exports.getAllDoctors = catchAsyncErrors(async(req,res,next) =>{
-    const resultPerPage = 4;
-    const doctorCount = await Doctor.countDocuments();
-    const apiFeature = new ApiFeatures(Doctor.find(),req.query)
-    .search()
-    .filter();
+  const resultPerPage = 3;
+  const doctorsCount = await Doctor.countDocuments();
 
-    let doctors = await apiFeature.query;
-    let filteredDoctorCount = doctors.length;
-    apiFeature.pagination(resultPerPage);
 
-    res.status(200).json({
-        success:true,
-        doctors,
-        doctorCount,
-        resultPerPage,
-        filteredDoctorCount,
-    });
+  const apiFeature = new ApiFeatures(Doctor.find(),req.query)
+  .search()
+  .filter();
+
+  let doctors = await apiFeature.query;
+  let filteredDoctorsCount = doctors.length;
+  apiFeature.pagination(resultPerPage);
+
+  doctors = await apiFeature.query.clone();
+
+  res.status(200).json({
+      success: true,
+      doctors,
+      doctorsCount,
+      resultPerPage,
+      filteredDoctorsCount,
+  });
+
 });
 
 // get doctor details 

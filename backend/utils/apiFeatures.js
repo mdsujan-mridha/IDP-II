@@ -3,7 +3,7 @@ class ApiFeatures {
         this.query = query;
         this.queryStr = queryStr;
     }
-    // doctor search query 
+    // product search query 
     search() {
         const keyword = this.queryStr.keyword ? {
             name: {
@@ -17,7 +17,7 @@ class ApiFeatures {
         this.query = this.query.find({ ...keyword });
         return this;
     }
-    // doctor filter query 
+    // product filter query 
     filter() {
         const queryCopy = { ...this.queryStr }
 

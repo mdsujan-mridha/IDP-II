@@ -1,0 +1,11 @@
+export const ALL_DOCTOR_REQUEST = "ALL_DOCTOR_REQUEST";
+export const ALL_DOCTOR_SUCCESS = "ALL_DOCTOR_SUCCESS";
+export const ALL_DOCTOR_FAIL = "ALL_DOCTOR_FAIL";
+
+
+// single doctor request 
+export const DOCTOR_DETAILS_REQUEST = "DOCTOR_DETAILS_REQUEST";
+export const DOCTOR_DETAILS_SUCCESS = "DOCTOR_DETAILS_SUCCESS";
+export const DOCTOR_DETAILS_FAIL = "DOCTOR_DETAILS_FAIL";
+// clear error 
+export const CLEAR_ERRORS = "CLEAR_ERRORS";
