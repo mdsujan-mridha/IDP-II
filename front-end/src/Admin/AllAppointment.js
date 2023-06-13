@@ -11,7 +11,7 @@ const AllAppointment = () => {
     const getUserAppointment = async () => {
         try {
 
-            const res = await axios.get(`http://localhost:8000/api/v1/admin/appointments`, {
+            const res = await axios.get(`https://doctorba.onrender.com/api/v1/admin/appointments`, {
                 withCredentials: 'true',
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,

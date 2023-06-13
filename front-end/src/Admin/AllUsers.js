@@ -7,7 +7,7 @@ const AllUsers = () => {
     const getAllUsers = async () => {
         try {
 
-            const res = await axios.get(`http://localhost:8000/api/v1/admin/users`, {
+            const res = await axios.get(`https://doctorba.onrender.com/api/v1/admin/users`, {
                 withCredentials: 'true',
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,

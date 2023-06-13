@@ -9,7 +9,7 @@ const NewDoctor = () => {
 
     const handleFinish = async (values) => {
         console.log(values);
-        const res = await axios.post('http://localhost:8000/api/v1/admin/doctor/new', { ...values ,userId: user._id }, {
+        const res = await axios.post('https://doctorba.onrender.com/api/v1/admin/doctor/new', { ...values ,userId: user._id }, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`,
             },

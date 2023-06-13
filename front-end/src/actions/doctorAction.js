@@ -5,7 +5,7 @@ export const getDoctor = (currentPage = 1,) => async (dispatch) => {
     try {
 
         dispatch({ type: ALL_DOCTOR_REQUEST });
-        let link = `http://localhost:8000/api/v1/doctors?page=${currentPage}`;
+        let link = `https://doctorba.onrender.com/api/v1/doctors?page=${currentPage}`;
         const { data } = await axios.get(link);
         dispatch({
             type: ALL_DOCTOR_SUCCESS,
@@ -25,7 +25,7 @@ export const getDoctorDetails = (id) => async (dispatch) => {
     try {
 
         dispatch({ type: DOCTOR_DETAILS_REQUEST })
-        const { data } = await axios.get(`http://localhost:8000/api/v1/doctors/${id}`)
+        const { data } = await axios.get(`https://doctorba.onrender.com/api/v1/doctors/${id}`)
         dispatch({
             type: DOCTOR_DETAILS_SUCCESS,
             payload: data.doctor
@@ -47,7 +47,7 @@ export const getUserAppointment = () => async (dispatch) => {
     try {
           
         dispatch({type:USER_APPOINTMENT_REQUEST})
-        const {data} = await axios.get(`http://localhost:8000/api/v1/allappointment`,{
+        const {data} = await axios.get(`https://doctorba.onrender.com/api/v1/allappointment`,{
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
             }
@@ -69,7 +69,7 @@ export const getAllAppointments = () => async (dispatch) => {
     try {
           
         dispatch({type:ALL_APPOINTMENT_REQUEST})
-        const {data} = await axios.get(`http://localhost:8000/api/v1/admin/appointments`)
+        const {data} = await axios.get(`https://doctorba.onrender.com/api/v1/admin/appointments`)
         dispatch({
             type:ALL_APPOINTMENT_SUCCESS,
             payload:data,

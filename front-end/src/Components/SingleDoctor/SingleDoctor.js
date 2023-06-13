@@ -33,7 +33,7 @@ const SingleDoctor = ({ user }) => {
     const handleBooking = async (e) => {
         e.preventDefault();
 
-        const res = await axios.post(`http://localhost:8000/api/v1/book/appointment`, {
+        const res = await axios.post(`https://doctorba.onrender.com/api/v1/book/appointment`, {
             doctorId: doctor?._id,
             userId: _id,
             doctorInfo: {

@@ -9,7 +9,7 @@ const AllDoctors = () => {
     const getAllDoctors = async () => {
         try {
 
-            const res = await axios.get(`http://localhost:8000/api/v1/admin/allDoctors`, {
+            const res = await axios.get(`https://doctorba.onrender.com/api/v1/admin/allDoctors`, {
                 withCredentials: 'true',
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,

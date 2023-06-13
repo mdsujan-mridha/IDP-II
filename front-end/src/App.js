@@ -23,6 +23,7 @@ import AllUsers from './Admin/AllUsers';
 import AllAppointment from './Admin/AllAppointment';
 import AllDoctors from './Admin/AllDoctors';
 import NewDoctor from './Admin/NewDoctor';
+import NotFound from './Components/NotFound/NotFound';
 // import { useSelector } from 'react-redux';
 // import axios from 'axios';
 // import store from './store';
@@ -80,6 +81,7 @@ function App() {
           <Route path='/admin/dashboard/users' element={<AllUsers />}>  </Route>
           <Route path='/admin/dashboard/new/doctor' element={<NewDoctor/>}>  </Route>
         </Route>
+        <Route path='*' element={<NotFound/>}></Route>
       </Routes>
 
       <Footer />
