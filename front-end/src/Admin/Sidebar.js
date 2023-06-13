@@ -8,7 +8,7 @@ const Sidebar = ({ children }) => {
             <Link className='btn btn-secondary text-white w-52' to="/admin/dashboard/appointments"> All Appointment </Link>
             <Link className='btn btn-secondary text-white w-52' to="/admin/dashboard/users"> All user </Link>
             <Link className='btn btn-secondary text-white w-52' to="/admin/dashboard/doctors"> All Doctors </Link>
-            <Link className='btn btn-secondary text-white w-52' to="/admin/users"> New Doctors </Link>
+            <Link className='btn btn-secondary text-white w-52' to="/admin/dashboard/new/doctor"> New Doctors </Link>
 
             <main>{children} </main>
         </div>
