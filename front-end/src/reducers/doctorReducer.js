@@ -1,4 +1,7 @@
 import {
+    ALL_APPOINTMENT_FAIL,
+    ALL_APPOINTMENT_REQUEST,
+    ALL_APPOINTMENT_SUCCESS,
     ALL_DOCTOR_FAIL,
     ALL_DOCTOR_REQUEST,
     ALL_DOCTOR_SUCCESS,
@@ -83,6 +86,34 @@ export const userAppointment = (state = { appointment: [] }, action) => {
 
             }
         case USER_APPOINTMENT_FAIL:
+            return {
+                loading: false,
+                error: action.payload
+            }
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null
+            }
+        default:
+            return state
+    }
+};
+// get all appointment  by admin 
+export const getAllAppointments = (state = { appointments: [] }, action) => {
+    switch (action.type) {
+        case ALL_APPOINTMENT_REQUEST:
+            return {
+                loading: true,
+                ...state
+            }
+        case ALL_APPOINTMENT_SUCCESS:
+            return {
+                loading: false,
+                appointments: action.payload.appointments,
+
+            }
+        case ALL_APPOINTMENT_FAIL:
             return {
                 loading: false,
                 error: action.payload

@@ -19,7 +19,7 @@ const SingleDoctor = ({ user }) => {
     //    console.log(_id)
     const [date, setDate] = useState();
     const [time, setTime] = useState();
-    console.log(time);
+    // console.log(time);
 
     const { loading, doctor } = useSelector((state) => state?.doctorDetails);
 
@@ -27,7 +27,7 @@ const SingleDoctor = ({ user }) => {
         dispatch(getDoctorDetails(id))
     }, [dispatch, id]);
 
-    console.log(doctor);
+    // console.log(doctor);
 
     const { specialization } = doctor;
     const handleBooking = async (e) => {
@@ -57,7 +57,7 @@ const SingleDoctor = ({ user }) => {
         );
         if (res.data.success) {
             // toast.success(res.data.success);
-            console.log(res.data.message);
+            // console.log(res.data.message);
         }
 
     }

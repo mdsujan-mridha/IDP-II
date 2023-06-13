@@ -27,7 +27,7 @@ const Appointment = ({ user }) => {
 
     }, []);
 
-    console.log(appointments);
+    // console.log(appointments);
      const colums =[
         {
             title:"ID",
@@ -71,9 +71,9 @@ const Appointment = ({ user }) => {
             
         },
      ]
-     console.log(appointments)
+    //  console.log(appointments)
     return (
-        <div className='container'>
+        <div className='container h-screen'>
             <h1 className='text-center py-10 text-4xl font-bold'>  Hello! <span className='text-orange-600'>{user?.name}</span> Your Appointments  </h1>
             <Table columns={colums} dataSource={appointments} />
         </div>

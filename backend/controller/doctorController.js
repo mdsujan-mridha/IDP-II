@@ -169,4 +169,20 @@ exports.myAppointment = catchAsyncErrors(async (req, res, next) => {
     success: true,
     appointments,
   })
+});
+
+// get all appointment by admin 
+exports.getAllAppointments = catchAsyncErrors(async (req, res, next) => {
+  const appointments = await Appointment.find();
+  res.status(200).json({
+    success: true,
+    appointments,
+  })
+})
+exports.getAllDoctorAdmin = catchAsyncErrors(async(req,res,next) =>{
+   const allDoctors = await Doctor.find();
+   res.status(200).json({
+    success:true,
+    allDoctors,
+   })
 })

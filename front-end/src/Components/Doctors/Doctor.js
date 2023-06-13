@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Doctor = ({ doctor }) => {
-    console.log(doctor);
+    // console.log(doctor);
     const{specialization} = doctor;
     return (
         <Link to={`/doctors/${doctor?._id}`} className="card card-side bg-secondary shadow-xl container px-12 py-5 lg:relative">

@@ -34,7 +34,7 @@ const Navbar = ({ user }) => {
     }
 
     function dashboard() {
-        navigate('/dashboard')
+        navigate('/admin/dashboard')
 
     }
     function profile() {
