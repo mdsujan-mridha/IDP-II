@@ -101,3 +101,61 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
 
 });
 
+// get all user --admin
+
+exports.getAllUsers = catchAsyncErrors(async (req, res, next) => {
+   const users = await User.find()
+   res.status(200).json({
+      success: true,
+      users
+   })
+})
+
+// get single user -- admin 
+exports.getAllUser = catchAsyncErrors(async (req, res, next) => {
+   const user = await User.findById(req.params.id)
+   if (!user) {
+      return next(new ErrorHandler(`user does not exist with : ${req.params.id} this is`));
+   }
+   res.status(200).json({
+      success: true,
+      user,
+   })
+});
+
+// get user details  
+exports.getUserDetails = catchAsyncErrors(async (req, res, next) => {
+   const user = await User.findById(req.user.id);
+   res.status(200).json({
+      success: true,
+      user,
+   })
+})
+
+// delete user admin 
+exports.deleteUser = catchAsyncErrors(async (req, res, next) => {
+   const user = await User.findById(req.params.id);
+   // there user params bcz this request will send by admin bt is this request will send bt user then i write (req.user.id)
+   if (!user) {
+      {
+         return next(new ErrorHandler(`User does not exist with id : ${req.params.id}`, 400));
+      }
+   }
+   await user.remove();
+   res.status(200).json({
+      success: true,
+      message: "user deleted Successfully",
+   })
+});
+
+//  logout user 
+exports.logout = catchAsyncErrors(async (req, res, next) => {
+   res.cookie("token", null, {
+      expires: new Date(Date.now()),
+      httpOnly: true,
+   });
+   res.status(200).json({
+      success: true,
+      message: "Logged Out",
+   })
+});

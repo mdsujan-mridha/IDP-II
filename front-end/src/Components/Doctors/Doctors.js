@@ -1,10 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import doctor1 from "../Assets/Doctor-1.png";
-import doctor2 from "../Assets/Doctor-2.png";
-import doctor3 from "../Assets/Doctor-3.png";
-import doctor4 from "../Assets/Doctor-4.png";
-import doctor5 from "../Assets/Doctor-5.png";
+
 import { useDispatch, useSelector } from 'react-redux';
 import { clearErrors, getDoctor } from '../../actions/doctorAction';
 import Loader from '../../Share/Loader';

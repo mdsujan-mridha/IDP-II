@@ -24,6 +24,10 @@ const doctorSchema = new mongoose.Schema({
         type: String,
         require: true,
     },
+    worksAt:{
+        type:String,
+        require:true,
+    },
     images: [
         {
             public_id: {

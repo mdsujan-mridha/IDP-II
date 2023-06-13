@@ -85,7 +85,7 @@ const LoginSignUp = () => {
     };
 
     //  redirect user 
-    const redirect = location.search ? location.search.split("=")[1] : "/account";
+    const redirect = location.search ? location.search.split("=")[1] : "/profile";
     //  useEffect 
     useEffect(() => {
         if (error) {
@@ -96,7 +96,7 @@ const LoginSignUp = () => {
         if (isAuthenticated) {
             // toast.success("Your Logged in")
             <Alert message="Logged in" type="success" />
-            // navigate(redirect)
+            navigate(redirect)
         }
     }, [dispatch, error, navigate, isAuthenticated, redirect]);
 

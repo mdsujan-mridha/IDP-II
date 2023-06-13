@@ -10,15 +10,21 @@ import SingleDoctor from './Components/SingleDoctor/SingleDoctor';
 import LoginSignUp from './Components/User/LoginSignUp';
 import Footer from './Share/Footer/Footer';
 import Navbar from './Share/Navbar/Navbar';
-
+import { useSelector } from 'react-redux';
+import axios from 'axios';
+import store from "./store";
+import { loadUser } from './actions/userAction';
+import UserOption from './Components/User/UserOption';
+import ProtectedRoute from './Route/ProtectedRoute';
+import Profile from './Components/User/Profile';
 // import { useSelector } from 'react-redux';
 // import axios from 'axios';
 // import store from './store';
 // import store from './store';
 
 function App() {
-  // const { isAuthenticated, user } = useSelector((state) => state.user)
-  // axios.defaults.withCredentials = true;
+  const { isAuthenticated, user } = useSelector((state) => state.user)
+  axios.defaults.withCredentials = true;
 
   useEffect(() => {
     WebFont.load({
@@ -27,7 +33,7 @@ function App() {
       },
     });
 
-    // store.dispatch()
+    store.dispatch(loadUser())
 
   }, []);
 
@@ -35,7 +41,8 @@ function App() {
 
   return (
     <>
-      <Navbar />
+      <Navbar user={user}/>
+      {isAuthenticated && <UserOption user={user} />}
       <ToastContainer
         position="top-right"
         autoClose={5000}
@@ -51,10 +58,13 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />}></Route>
         <Route path='home' element={<Home />}></Route>
-        
+
         <Route path='doctors' element={<Doctors />}></Route>
-        <Route path='/doctors/:id' element={<SingleDoctor />}></Route>
-        <Route path='login' element={<LoginSignUp />}></Route>
+        <Route path='/doctors/:id' element={<SingleDoctor user={user}/>}></Route>
+        <Route path='/login' element={<LoginSignUp />}></Route>
+        <Route element={<ProtectedRoute isAuthenticated={isAuthenticated} />}>
+          <Route path='/profile' element={<Profile/>}></Route>
+        </Route>
       </Routes>
 
       <Footer />
