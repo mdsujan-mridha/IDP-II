@@ -8,23 +8,24 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getDoctorDetails } from '../../actions/doctorAction';
 import Loader from '../../Share/Loader';
+import "./singleDoctor.css";
 
-
-const SingleDoctor = ({user}) => {
+const SingleDoctor = ({ user }) => {
     const dispatch = useDispatch();
 
     const { id } = useParams();
-//    console.log(user)
-   const {_id,name,email} = user;
-//    console.log(_id)
+    //    console.log(user)
+    const { _id, name, email } = user;
+    //    console.log(_id)
     const [date, setDate] = useState();
-    const [time, setTime] = useState(["90:30"]);
+    const [time, setTime] = useState();
+    console.log(time);
 
     const { loading, doctor } = useSelector((state) => state?.doctorDetails);
 
     useEffect(() => {
         dispatch(getDoctorDetails(id))
-    }, [dispatch,id]);
+    }, [dispatch, id]);
 
     console.log(doctor);
 
@@ -38,8 +39,9 @@ const SingleDoctor = ({user}) => {
             doctorInfo: {
                 "firstName": doctor?.firstName,
                 "lastName": doctor?.lastName,
-                "phoneNumber": doctor?.phoneNumber
+
             },
+            phoneNumber: doctor?.phoneNumber,
             userInfo: {
                 "name": name,
                 "phone": email,
@@ -61,6 +63,11 @@ const SingleDoctor = ({user}) => {
     }
     // console.log(date)
     // console.log(time)
+    const handleTime = (e)=>{
+         e.preventDefault();
+         setTime(e.target.value)
+
+    }
     return (
         <Fragment>
             {
@@ -93,13 +100,26 @@ const SingleDoctor = ({user}) => {
                                                 onChange={(value) => setDate(moment(value).format("DD-MM-YYYY"))}
                                                 style={{ zIndex: 100 }}
                                             />
-                                            <TimePicker format="HH:mm"
+                                            {/* <TimePicker
+                                                format="HH:mm"
+                                                aria-required={"true"}
                                                 onChange={(value) => {
                                                     setTime(moment(value).format("HH:mm"));
                                                 }}
                                                 style={{ zIndex: 100 }}
-                                            />
-                                            <button onClick={handleBooking} className='btn border-none text-white' style={{backgroundColor:"#583ee6" }}>Book Now </button>
+                                            /> */}
+                                            <select className="select w-32 max-w-xs placeholder-gray-600 bg-transparent"
+                                            placeholder='Select your time'
+                                             onChange={handleTime}
+                                            >
+                                                 <option disabled selected className='option'>Select your time</option>
+                                                <option value="10:00-10:30" className='option'>10:00-10:30</option>
+                                                <option value="10:30-11:00" className='option'>10:30-11:00</option>
+                                                <option value="11:00-11:30" className='option'>11:00-11:30</option>
+                                                <option value="11:30-12:00" className='option'>11:30-12:00</option>
+                                                <option value="12:00-12:30" className='option'>12:00-12:30</option>
+                                            </select>
+                                            <button onClick={handleBooking} className='btn border-none text-white' style={{ backgroundColor: "#583ee6" }}>Book Now </button>
                                         </div>
                                     </div>
                                 </div>

@@ -5,7 +5,10 @@ import {
     CLEAR_ERRORS,
     DOCTOR_DETAILS_FAIL,
     DOCTOR_DETAILS_REQUEST,
-    DOCTOR_DETAILS_SUCCESS
+    DOCTOR_DETAILS_SUCCESS,
+    USER_APPOINTMENT_FAIL,
+    USER_APPOINTMENT_REQUEST,
+    USER_APPOINTMENT_SUCCESS
 } from "../constant/doctorConstant";
 // get all doctor 
 export const doctorReducer = (state = { doctors: [] }, action) => {
@@ -63,4 +66,33 @@ export const doctorDetailsReducer = (state = { doctor: {} }, action) => {
         default:
             return state
     }
-}
+};
+
+//user appointment 
+export const userAppointment = (state = { appointment: [] }, action) => {
+    switch (action.type) {
+        case USER_APPOINTMENT_REQUEST:
+            return {
+                loading: true,
+                ...state
+            }
+        case USER_APPOINTMENT_SUCCESS:
+            return {
+                loading: false,
+                data: action.payload.data,
+
+            }
+        case USER_APPOINTMENT_FAIL:
+            return {
+                loading: false,
+                error: action.payload
+            }
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null
+            }
+        default:
+            return state
+    }
+};

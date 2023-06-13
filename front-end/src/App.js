@@ -17,6 +17,7 @@ import { loadUser } from './actions/userAction';
 import UserOption from './Components/User/UserOption';
 import ProtectedRoute from './Route/ProtectedRoute';
 import Profile from './Components/User/Profile';
+import Appointment from './Components/User/Appointment';
 // import { useSelector } from 'react-redux';
 // import axios from 'axios';
 // import store from './store';
@@ -64,6 +65,7 @@ function App() {
         <Route path='/login' element={<LoginSignUp />}></Route>
         <Route element={<ProtectedRoute isAuthenticated={isAuthenticated} />}>
           <Route path='/profile' element={<Profile/>}></Route>
+          <Route path='/appointment' element={<Appointment user={user}/>}></Route>
         </Route>
       </Routes>
 

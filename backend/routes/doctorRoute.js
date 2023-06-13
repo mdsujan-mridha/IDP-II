@@ -5,7 +5,7 @@ const {
     deleteDoctor,
     getAllDoctorDetails,
     appointmentBooking,
-    userAppointment
+    myAppointment
 } = require('../controller/doctorController');
 const { isAuthenticatedUser, authorizeRoles } = require('../midddleware/auth');
 
@@ -21,7 +21,8 @@ router.route("/doctors/:id").get(getAllDoctorDetails);
 // book appointment 
 router.route("/book/appointment").post(appointmentBooking)
 // appointment list 
-router.route("/allappointment").get(isAuthenticatedUser, userAppointment)
+router.route("/myAppointment").get(isAuthenticatedUser, myAppointment);
+
 module.exports = router;
 
 
